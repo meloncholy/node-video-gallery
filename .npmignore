@@ -20,3 +20,5 @@ app.json
 app josie.json
 database.json
 database josie.json
+
+*.sublime-*
