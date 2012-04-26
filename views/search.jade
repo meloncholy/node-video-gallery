@@ -1,0 +1,11 @@
+- var v
+- for (var i = view.start; i < view.end; i++) {
+-	v = view.videos[i]
+	a(id="#{v.uniqueId}", 
+		href="#{v.hashUrl}",
+		class="Box#{i == view.start ? " Batch" : ""}",
+		title="Click to view the #{v.name}"
+	)
+		img(src="#{settings.siteUrl}images/thumb/#{v.image}", alt="The #{v.name}")
+		span #{v.name}
+- }

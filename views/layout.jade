@@ -1,0 +1,60 @@
+!!! 5
+html
+	head
+		base(href=settings.siteUrl)
+		meta(charset="utf-8")
+		meta(description=settings.siteDescription)
+		title=settings.siteTitle
+		link(rel="stylesheet", href="stylesheets/style.css", media="screen")
+
+		// if lte IE 8
+			link(rel="stylesheet", href="stylesheets/ie.css", media="screen")
+	
+		if settings.mode == "development"
+			//- Debug scripts
+			script(src="javascripts/jquery-1.6.4.js")
+			script(src="javascripts/jwplayer.js")
+			script(src="javascripts/jquery.fn.vg.effects.js")
+			script(src="javascripts/jquery.fn.vg.slider.js")
+			script(src="javascripts/jquery.fn.vg.validateform.js")
+			script(src="javascripts/jquery.fn.cookie.js")
+			script(src="javascripts/jquery.ba-hashchange.js")
+			script(src="javascripts/jquery.ui.core.js")
+			script(src="javascripts/jquery.ui.widget.js")
+			script(src="javascripts/jquery.ui.widget.subclass.js")
+			script(src="javascripts/jquery.ui.vg.start.js")
+			script(src="javascripts/jquery.ui.vg.crumbs.js")
+			script(src="javascripts/jquery.ui.vg.alert.js")
+			script(src="javascripts/jquery.ui.vg.results.js")
+			script(src="javascripts/jquery.ui.vg.dialog.js")
+			script(src="javascripts/jquery.ui.vg.feedback.js")
+			script(src="javascripts/jquery.ui.vg.contact.js")
+			script(src="javascripts/jquery.ui.vg.suggest.js")
+			script(src="javascripts/jquery.ui.vg.video.js")
+		else
+			script(src=settings.jQueryCdnUrl)
+			script(src="javascripts/jwplayer.js")
+			script(src="javascripts/jquery.widget-funcs.min.js")
+			script(src="javascripts/jquery.ui.vg.min.js")
+	
+		script
+			$(function ()
+			{
+				$(".Slider:not(.Vertical)").slider({ max: 1, minNull: true, $target: $(".Results") });
+				$(".Slider.Vertical").slider({ max: 3, minNull: true, invert: true, vertical: true, $target: $(".Results") });
+				$(".Results").vgStart({ title: "#{settings.siteTitle}", titlePost: "#{settings.siteTitlePost}", prettyLink: "#{settings.prettyLink}/" }); 
+			});
+	
+		script
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', '#{settings.gaAccount}']);
+			_gaq.push(['_setDomainName', '#{settings.gaDomain}']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+	body!= body

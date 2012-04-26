@@ -1,0 +1,46 @@
+div.Content
+	a.Close.Round.Button(href="#!")
+	h1 Suggest a name
+	form(action="#!feedback/submit_name/", method="post")
+		input(type="hidden", name="entry_id", value="XXXX")
+		div.ValidateAlert There are some problems with the form. Please take a look.
+
+		if !view.name || !view.url
+			| Suggest a new name for a video. 
+			label(for="name") The video
+			div.Field
+				input#url(type="hidden",value=view.url)
+				input#name.Required(type="text", name="name")
+				div.Validate I need to know the name used here for the video.
+		else
+			| Suggest a new name for 
+			span #{view.name}
+			|.
+			input#url(type="hidden",value=view.url)
+			input#name(type="hidden", name="name", value=view.name)
+
+		fieldset
+			label(for="suggestion") New name
+			div.Field
+				input#suggestion.Required(type="text", name="suggestion")
+				div.Validate Your new name can&rsquo;t be blank. Sorry.
+
+			label(for="comment") Anything else I should know? 
+				span (Where you learnt this name, video or web links for the video, stuff like that. Though if you&rsquo;re not sure, that&rsquo;s cool.)
+			div.Field
+				textarea#comment(rows="8", cols="30", name="comment")
+
+		fieldset
+			p A little about you (optional, but useful so I can get back to you).
+
+			label(for="author") Name
+			div.Field
+				input#author(type="text", name="author")
+
+			label(for="email") Email
+			div.Field
+				input#email.Email(type="text", name="email")
+				div.Validate Your email address doesn&rsquo;t look valid.
+
+		a#submit.Button(href="#!") Send
+		a.Close(href="#!") Close

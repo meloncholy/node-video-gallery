@@ -1,0 +1,79 @@
+- var difficultyText = ["Beginner", "Intermediate", "Advanced", "Expert"];
+- var resolutions = [{ width: 1280, height: 720 }, { width: 854, height: 480 }, { width: 640, height: 360 }, { width: 320, height: 240 }];
+- var filters = ["strength", "flexibility", "invert", "spin", "transition"];
+
+a.Close.Round.Button(href="#!")
+h1.VideoName
+	| #{view.name + (view.refName ? " (" + view.refName + ")" : "")}
+div.VideoContainer
+	if view.prev
+		a.PrevVideo(href="#!" + settings.prettyLink + "/" + view.prev.url + (view.prev.otherid ? "/" + view.prev.otherid : ""), title="Go to the #{view.prev.name}.")
+	if view.next
+		a.NextVideo(href="#!" + settings.prettyLink + "/" + view.next.url + (view.next.otherid ? "/" + view.next.otherid : ""), title="Go to the #{view.next.name}.")
+	div#videoPlayer
+	img(src="#{settings.siteUrl}images/full/#{view.image}", alt="The #{view.name}")
+
+ul.VideoActions
+	li#shareToggleLink.TextButton
+		div.Share.Round.Button
+		div.ButtonLabel Share
+	li.Round.Button(data-video-size="large") 720p
+	li.Round.Button(data-video-size="medium") 480p
+	li.Round.Button(data-video-size="small") 360p
+
+div.OtherNames
+	span.VideoInfoHeading Names 
+	| #{view.name}
+	for altName in view.altNames
+		|, #{altName} 
+
+	span.Sep \/\/ 
+	a.SuggestName(href="#!") Suggest a name
+
+ul.VideoInfo
+	li
+		span.VideoInfoHeading Tags 
+	li
+		a.Difficulty(href="#!search/+difficulty=#{view.difficulty}") #{difficultyText[view.difficulty]}
+		span.Sep \/\/ 
+	
+	//- Converts to for / for in loop, not forEach, so no arguments. Which would have been fun. 
+	//- for filter in ["strength", "flexibility", "invert", "spin", "transition"]
+	//- if arguments[1] < arguments[2].length - 1
+
+	- for (var i = 0, len = filters.length; i < len; i++) {
+		li
+			a(class=view[filters[i]] ? "Yes" : "No", href="#!search/+" + filters[i] + "=" + view[filters[i]]) #{(!view[filters[i]] ? "Not " : "") + filters[i].charAt(0).toUpperCase() + filters[i].substring(1)}
+			if i < len - 1
+				span.Sep \/\/ 
+	- }
+
+div.ShareToggle
+	h2 Share
+	p Spread the love! Share this video on Facebook, Twitter or your own site.
+	p
+		input#shareLink.ReadOnly(type="text", value="#{settings.siteUrl + "#!" + settings.prettyLink + "/" + view.url}", data-long-link=settings.siteUrl + "#!" + settings.prettyLink + "/" + view.url, data-short-link="http://bit.ly/something")
+		input#shortLink(type="checkbox")
+		label(for="shortLink") Short link
+	p
+		div#embedToggleLink.Button Embed
+		div#shareFacebook.Button F
+		div#shareTwitter.Button t
+
+	div.EmbedToggle
+		textarea#shareEmbed.ReadOnly &lt;iframe src="#{settings.siteUrl + "embed/" + view.url + "/"}" style="border: none;" frameborder="0" width="640" height="360" allowfullscreen&gt;&lt;/iframe&gt;
+		h3 How big do you want it?
+
+		ul.EmbedSize
+			for res in resolutions
+				li(data-width=res.width, data-height=res.height) 
+					div #{res.width} &times; #{res.height}
+					div.EmbedSizeOp(id="embed" + res.width)
+
+div.SimilarVideos
+	h2 Similar videos
+	ul
+		for similarVideo in view.similarVideos
+			li: a(href="#!" + settings.prettyLink + "/" + similarVideo.url, title="View the #{similarVideo.name}")
+				img(src="#{settings.siteUrl}images/thumb/#{similarVideo.image}", alt="The #{similarVideo.name}")
+				span #{similarVideo.name}

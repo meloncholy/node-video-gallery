@@ -1,0 +1,10 @@
+- view.js = "(function ($) { $(function() { var embedWidth = $(window).width(); var embedHeight = Math.round(embedWidth * 0.5625); $(\"img\").width(embedWidth); jwplayer(\"videoPlayer\").setup({ flashplayer: \"player.swf\", width: embedWidth, height: embedHeight, image: \"" + view.image + "\", allowfullscreen: true, provider: \"http\", levels:  [ { bitrate: 2048, file: \"" + view.url + "l-" + view.video + "\", width: 1280 }, { bitrate: 1024, file: \"" + view.url + "m-" + view.video + "\", width: 854 }, { bitrate: 768, file: \"" + view.url + "s-" + view.video + "\", width: 640 }, { bitrate: 384, file: \"" + view.url + "i-" + view.video + "\", width: 320 } ] }); }); })(jQuery);";
+
+include embedHeader
+
+div.Video
+	div#videoPlayer
+	img(src=settings.siteUrl + "images/full/" + view.image, alt="The " + view.name)
+div.EmbedHook Find this and nearly #{settings.videoCount} other videos in the 
+	a(href=settings.siteUrl) #{settings.siteTitle}
+	|.

@@ -1,0 +1,32 @@
+!!! 5
+html
+	head
+		base(href=settings.siteUrl)
+		meta(charset="utf-8")
+		meta(description=settings.siteDescription)
+		title=view.title || settings.siteTitle
+		link(rel="stylesheet", href="stylesheets/style.css", media="screen")
+
+		// if lte IE 8
+			link(rel="stylesheet", href="stylesheets/ie.css", media="screen")
+
+		script(src=settings.jQueryCdnUrl)
+		script(src="javascripts/jwplayer.js")
+	
+		if view.js
+			script
+				!{view.js}
+	
+		script
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', '#{settings.gaAccount}']);
+			_gaq.push(['_setDomainName', '#{settings.gaDomain}']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+
+	body

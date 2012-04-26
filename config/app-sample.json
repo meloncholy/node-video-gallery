@@ -1,0 +1,19 @@
+{
+	"localPort": 3000,
+	"sessionSecret": "session secret",
+	"siteUrl": "http://bits.meloncholy.com/node-video-gallery/",
+	"mode": "development",
+	"batchSize": 20,
+	"// videoCount": "Approx number of videos in the database (used for info purposes only in a view)",
+	"videoCount": 300,
+	"cookiePath": "/",
+	"siteTitle": "Video Gallery",
+	"siteTitlePost": " | Video Gallery",
+	"siteDescription": "This Video Gallery is a web app with lots of jQuery and Node goodness. Yum.",
+	"maxRelatedVideos": 19,
+	"maxSimilarVideos": 7,
+	"prettyLink": "video",
+	"jQueryCdnUrl": "http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js",
+	"gaAccount": "UA-XXXXXXXX-X",
+	"gaDomain": "meloncholy.com"
+}

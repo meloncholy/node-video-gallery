@@ -1,0 +1,24 @@
+if view.fewVideos
+	p Did you mean to search for
+		a.SearchLink(href="#!") #{query.altSearch}
+		| instead? 
+		a.SuggestName(href="#!") Suggest a name
+		| .
+else if view.altVideos
+	p No videos found for 
+		span.Search #{query.unescapedSearch}
+		| . Showing results for 
+		a.SearchLink(href="#!") #{query.altSearch}
+		|  instead. 
+		a.SuggestName(href="#!") Suggest a name
+		| .
+else if view.noVideos
+	p No videos match your search. Sorry. 
+		a.SuggestName(href="#!") Suggest a name
+		| .
+else if view.filtersVideos
+	p No videos match your search, but I do have something
+		a.FiltersLink(href="#!") without your filters
+		| . 
+		a.SuggestName(href="#!") Suggest a name
+		| .

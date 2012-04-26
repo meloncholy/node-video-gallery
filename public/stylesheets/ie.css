@@ -1,0 +1,13 @@
+﻿/* IE8 does pretty well, only missing out on the CSS3 goodness. IE7 works if you can overlook its lack of support for inline-block... Fx & Safari are usable all the way back to 3.0. */
+
+.Search.Top { background-color: #161616; }
+
+.Filters .ToggleFilters { background-color: #161616; }
+                          
+.Feedback { background-color: #161616; }
+
+#vidEmbedSize { background-color: #dc00a0; }
+
+/* IE7 inline-block http://blog.mozilla.com/webdev/2009/02/20/cross-browser-inline-block/ */
+
+.Results .Box, .SearchForm, .Button, .Share.Round.Button, .Close.Round.Button, .ButtonLabel, .Filters .Container, .Slider, .SliderScale, .SliderCaption, .SliderValues, .SliderValues div, .Content li, .EmbedSize li, .EmbedSizeOp, .RelatedVideos .Box img, .RelatedVideos .Box span, .Field.Error .Validate, .Field > * { display: inline; zoom: 1; }

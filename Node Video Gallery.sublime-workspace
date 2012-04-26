@@ -1,0 +1,1990 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"outline",
+				"outline"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 2759,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 727,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 5365,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Searching 1292 files for \"req.send\" (regex)\n\n0 matches across 0 files\n\n\nSearching 1292 files for \"req.send\"\n\n0 matches across 0 files\n\n\nSearching 1292 files for \"req.header\"\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\History.md:\n  321    * Added HTTPS support\n  322    * Added `res.cookie()` maxAge support\n  323:   * Added `req.header()` _Referrer_ / _Referer_ special-case, either works\n  324    * Added mount support for `res.redirect()`, now respects the mount-point\n  325    * Added `union()` util, taking place of `merge(clone())` combo\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\lib\\request.js:\n   37   * Examples:\n   38   *\n   39:  *     req.header('Content-Type');\n   40   *     // => \"text/plain\"\n   41   *     \n   42:  *     req.header('content-type');\n   43   *     // => \"text/plain\"\n   44   *     \n   45:  *     req.header('Accept');\n   46   *     // => undefined\n   47   *     \n   48:  *     req.header('Accept', 'text/html');\n   49   *     // => \"text/html\"\n   50   *\n   ..\n   55   */\n   56  \n   57: req.header = function(name, defaultValue){\n   58    switch (name = name.toLowerCase()) {\n   59      case 'referer':\n   ..\n  271   * \n  272   *       app.is('an image', function(req){\n  273:  *         return 0 == req.headers['content-type'].indexOf('image');\n  274   *       });\n  275   *       \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\lib\\response.js:\n  382    // Setup redirect map\n  383    var map = {\n  384:       back: req.header('Referrer', base)\n  385      , home: base\n  386    };\n  ...\n  403  \n  404      // Absolute\n  405:     var host = req.headers.host\n  406        , tls = req.connection.encrypted;\n  407      url = 'http' + (tls ? 's' : '') + '://' + host + url;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\basicAuth.js:\n   60  \n   61    return function(req, res, next) {\n   62:     var authorization = req.headers.authorization;\n   63  \n   64      if (req.remoteUser) return next();\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\bodyParser.js:\n   24  \n   25  function mime(req) {\n   26:   var str = req.headers['content-type'] || '';\n   27    return str.split(';')[0];\n   28  }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\cookieParser.js:\n   32  module.exports = function cookieParser(){\n   33    return function cookieParser(req, res, next) {\n   34:     var cookie = req.headers.cookie;\n   35      if (req.cookies) return next();\n   36      req.cookies = {};\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\csrf.js:\n  102    return (req.body && req.body._csrf)\n  103      || (req.query && req.query._csrf)\n  104:     || (req.headers['x-csrf-token']);\n  105  }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\directory.js:\n   55  \n   56    return function directory(req, res, next) {\n   57:     var accept = req.headers.accept || 'text/plain'\n   58        , url = parse(req.url)\n   59        , dir = decodeURIComponent(url.pathname)\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\errorHandler.js:\n   57      if (dumpExceptions) console.error(err.stack);\n   58      if (showStack) {\n   59:       var accept = req.headers.accept || '';\n   60        // html\n   61        if (~accept.indexOf('html')) {\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\limit.js:\n   30    return function limit(req, res, next){\n   31      var received = 0\n   32:       , len = req.headers['content-length']\n   33:         ? parseInt(req.headers['content-length'], 10)\n   34          : null;\n   35  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\logger.js:\n   68   *   as \":type\" in this case.\n   69   *\n   70:  *      connect.logger.token('type', function(req, res){ return req.headers['content-type']; })\n   71   *\n   72   * Defining Formats:\n   ..\n  265  \n  266  exports.token('referrer', function(req){\n  267:   return req.headers['referer'] || req.headers['referrer'];\n  268  });\n  269  \n  ...\n  283  \n  284  exports.token('user-agent', function(req){\n  285:   return req.headers['user-agent'];\n  286  });\n  287  \n  ...\n  289  \n  290  exports.token('req', function(req, res, field){\n  291:   return req.headers[field.toLowerCase()];\n  292  });\n  293  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\methodOverride.js:\n   29        delete req.body[key];\n   30      // check X-HTTP-Method-Override\n   31:     } else if (req.headers['x-http-method-override']) {\n   32:       req.method = req.headers['x-http-method-override'].toUpperCase();\n   33      }\n   34      \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\session.js:\n   51  \n   52  function defaultFingerprint(req) {\n   53:   var ua = req.headers['user-agent'] || '';\n   54    return ua.replace(/;?\\schromeframe\\/[\\d\\.]+/, '');\n   55  };\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\static.js:\n   99    // setup\n  100    var maxAge = options.maxAge || 0\n  101:     , ranges = req.headers.range\n  102      , head = 'HEAD' == req.method\n  103      , get = 'GET' == req.method\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\staticCache.js:\n   56    return function staticCache(req, res, next){\n   57      var path = url.parse(req.url).pathname\n   58:       , ranges = req.headers.range\n   59        , hit = cache.get(path)\n   60        , hitCC\n   ..\n  115        // parse cache-controls\n  116        hitCC = utils.parseCacheControl(header['cache-control'] || '');\n  117:       uaCC = utils.parseCacheControl(req.headers['cache-control'] || '');\n  118  \n  119        // check if we must revalidate(bypass)\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\vhost.js:\n   33    if (server.onvhost) server.onvhost(hostname);\n   34    return function vhost(req, res, next){\n   35:     if (!req.headers.host) return next();\n   36:     var host = req.headers.host.split(':')[0];\n   37      if (req.subdomains = regexp.exec(host)) {\n   38        req.subdomains = req.subdomains[0].split('.').slice(0, -1);\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\utils.js:\n  241  exports.modified = function(req, res, headers) {\n  242    var headers = headers || res._headers || {}\n  243:     , modifiedSince = req.headers['if-modified-since']\n  244      , lastModified = headers['last-modified']\n  245:     , noneMatch = req.headers['if-none-match']\n  246      , etag = headers['etag'];\n  247  \n  ...\n  290  \n  291  exports.conditionalGET = function(req) {\n  292:   return req.headers['if-modified-since']\n  293:     || req.headers['if-none-match'];\n  294  };\n  295  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\node_modules\\formidable\\lib\\incoming_form.js:\n   78    };\n   79  \n   80:   this.writeHeaders(req.headers);\n   81  \n   82    var self = this;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\node_modules\\formidable\\test\\legacy\\simple\\test-incoming-form.js:\n   58  \n   59    gently.expect(form, 'writeHeaders', function(headers) {\n   60:     assert.strictEqual(headers, REQ.headers);\n   61    });\n   62  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\paperboy\\lib\\paperboy.js:\n   43      var statCode;\n   44      //Check to see if we can send a 304 and skip the send\n   45:     if(req.headers['if-none-match'] == etag){\n   46        statCode = 304;\n   47        headerFields['Content-Length'] = 0;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\manager.js:\n  692  Manager.prototype.handleHandshake = function (data, req, res) {\n  693    var self = this\n  694:     , origin = req.headers.origin\n  695      , headers = {\n  696          'Content-Type': 'text/plain'\n  ...\n  723      headers['Access-Control-Allow-Origin'] = '*';\n  724  \n  725:     if (req.headers.cookie) {\n  726        headers['Access-Control-Allow-Credentials'] = 'true';\n  727      }\n  ...\n  906      var data = {\n  907          query: uri.query || {}\n  908:       , headers: req.headers\n  909        , request: req\n  910        , path: path\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\static.js:\n  295  \n  296    function answer (reply) {\n  297:     var cached = req.headers['if-none-match'] === reply.etag;\n  298      if (cached && self.manager.enabled('browser client etag')) {\n  299        return write(304);\n  300      }\n  301  \n  302:     var accept = req.headers['accept-encoding'] || ''\n  303        , gzip = !!~accept.toLowerCase().indexOf('gzip')\n  304        , mime = reply.mime\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\http.js:\n   46      var buffer = ''\n   47        , res = req.res\n   48:       , origin = req.headers.origin\n   49        , headers = { 'Content-Length': 1 }\n   50        , self = this;\n   ..\n   65        headers['Access-Control-Allow-Origin'] = '*';\n   66  \n   67:       if (req.headers.cookie) {\n   68          headers['Access-Control-Allow-Credentials'] = 'true';\n   69        }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket.js:\n   27  function WebSocket (mng, data, req) {\n   28    var transport\n   29:     , version = req.headers['sec-websocket-version'];\n   30    if (typeof version !== 'undefined' && typeof protocolVersions[version] !== 'undefined') {\n   31      transport = new protocolVersions[version](mng, data, req);\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\default.js:\n   83    this.buffered = [];\n   84  \n   85:   if (this.req.headers.upgrade !== 'WebSocket') {\n   86      this.log.warn(this.name + ' connection invalid');\n   87      this.end();\n   ..\n   89    }\n   90  \n   91:   var origin = this.req.headers.origin\n   92      , location = (this.socket.encrypted ? 'wss' : 'ws')\n   93:                + '://' + this.req.headers.host + this.req.url\n   94      , waitingForNonce = false;\n   95  \n   96:   if (this.req.headers['sec-websocket-key1']) {\n   97      // If we don't have the nonce yet, wait for it (HAProxy compatibility).\n   98      if (! (this.req.head && this.req.head.length >= 8)) {\n   ..\n  108      ];\n  109  \n  110:     if (this.req.headers['sec-websocket-protocol']){\n  111        headers.push('Sec-WebSocket-Protocol: '\n  112:           + this.req.headers['sec-websocket-protocol']);\n  113      }\n  114    } else {\n  ...\n  223  WebSocket.prototype.proveReception = function (headers) {\n  224    var self = this\n  225:     , k1 = this.req.headers['sec-websocket-key1']\n  226:     , k2 = this.req.headers['sec-websocket-key2'];\n  227  \n  228    if (k1 && k2){\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-07-12.js:\n   92    var self = this;\n   93  \n   94:   if (typeof this.req.headers.upgrade === 'undefined' || \n   95:       this.req.headers.upgrade.toLowerCase() !== 'websocket') {\n   96      this.log.warn(this.name + ' connection invalid');\n   97      this.end();\n   ..\n   99    }\n  100  \n  101:   var origin = this.req.headers['sec-websocket-origin']\n  102      , location = (this.socket.encrypted ? 'wss' : 'ws')\n  103:                + '://' + this.req.headers.host + this.req.url;\n  104    \n  105    if (!this.verifyOrigin(origin)) {\n  ...\n  109    }\n  110    \n  111:   if (!this.req.headers['sec-websocket-key']) {\n  112      this.log.warn(this.name + ' connection invalid: received no key');\n  113      this.end();\n  ...\n  116      \n  117    // calc key\n  118:   var key = this.req.headers['sec-websocket-key'];  \n  119    var shasum = crypto.createHash('sha1');  \n  120    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-16.js:\n   92    var self = this;\n   93  \n   94:   if (typeof this.req.headers.upgrade === 'undefined' || \n   95:       this.req.headers.upgrade.toLowerCase() !== 'websocket') {\n   96      this.log.warn(this.name + ' connection invalid');\n   97      this.end();\n   ..\n   99    }\n  100  \n  101:   var origin = this.req.headers['origin']\n  102      , location = (this.socket.encrypted ? 'wss' : 'ws')\n  103:                + '://' + this.req.headers.host + this.req.url;\n  104    \n  105    if (!this.verifyOrigin(origin)) {\n  ...\n  109    }\n  110    \n  111:   if (!this.req.headers['sec-websocket-key']) {\n  112      this.log.warn(this.name + ' connection invalid: received no key');\n  113      this.end();\n  ...\n  116      \n  117    // calc key\n  118:   var key = this.req.headers['sec-websocket-key'];  \n  119    var shasum = crypto.createHash('sha1');  \n  120    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-17.js:\n   86    var self = this;\n   87  \n   88:   if (this.req.headers.upgrade !== 'websocket') {\n   89      this.log.warn(this.name + ' connection invalid');\n   90      this.end();\n   ..\n   92    }\n   93  \n   94:   var origin = this.req.headers['origin']\n   95      , location = (this.socket.encrypted ? 'wss' : 'ws')\n   96:                + '://' + this.req.headers.host + this.req.url;\n   97    \n   98    if (!this.verifyOrigin(origin)) {\n   ..\n  102    }\n  103    \n  104:   if (!this.req.headers['sec-websocket-key']) {\n  105      this.log.warn(this.name + ' connection invalid: received no key');\n  106      this.end();\n  ...\n  109      \n  110    // calc key\n  111:   var key = this.req.headers['sec-websocket-key'];  \n  112    var shasum = crypto.createHash('sha1');  \n  113    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\xhr-polling.js:\n   51    HTTPPolling.prototype.doWrite.call(this);\n   52  \n   53:   var origin = this.req.headers.origin\n   54      , headers = {\n   55            'Content-Type': 'text/plain; charset=UTF-8'\n   ..\n   62      headers['Access-Control-Allow-Origin'] = '*';\n   63  \n   64:     if (this.req.headers.cookie) {\n   65        headers['Access-Control-Allow-Credentials'] = 'true';\n   66      }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\node_modules\\socket.io-client\\node_modules\\xmlhttprequest\\tests\\test-headers.js:\n    8  var server = http.createServer(function (req, res) {\n    9  	// Test setRequestHeader\n   10: 	assert.equal(\"Foobar\", req.headers[\"x-test\"]);\n   11  	\n   12  	var body = \"Hello World\";\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\vid-streamer\\index - Copy.js:\n   66  	var stat;\n   67  	var info = {};\n   68: 	var range = typeof req.headers.range === \"string\" ? req.headers.range : undefined;\n   69  	var reqUrl = url.parse(req.url, true);\n   70  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\vid-streamer\\index.js:\n   68  	var stat;\n   69  	var info = {};\n   70: 	var range = typeof req.headers.range === \"string\" ? req.headers.range : undefined;\n   71  	var reqUrl = url.parse(req.url, true);\n   72  \n\n77 matches across 32 files\n\n\nSearching 1292 files for \"req.header\"\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\History.md:\n  321    * Added HTTPS support\n  322    * Added `res.cookie()` maxAge support\n  323:   * Added `req.header()` _Referrer_ / _Referer_ special-case, either works\n  324    * Added mount support for `res.redirect()`, now respects the mount-point\n  325    * Added `union()` util, taking place of `merge(clone())` combo\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\lib\\request.js:\n   37   * Examples:\n   38   *\n   39:  *     req.header('Content-Type');\n   40   *     // => \"text/plain\"\n   41   *     \n   42:  *     req.header('content-type');\n   43   *     // => \"text/plain\"\n   44   *     \n   45:  *     req.header('Accept');\n   46   *     // => undefined\n   47   *     \n   48:  *     req.header('Accept', 'text/html');\n   49   *     // => \"text/html\"\n   50   *\n   ..\n   55   */\n   56  \n   57: req.header = function(name, defaultValue){\n   58    switch (name = name.toLowerCase()) {\n   59      case 'referer':\n   ..\n  271   * \n  272   *       app.is('an image', function(req){\n  273:  *         return 0 == req.headers['content-type'].indexOf('image');\n  274   *       });\n  275   *       \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\lib\\response.js:\n  382    // Setup redirect map\n  383    var map = {\n  384:       back: req.header('Referrer', base)\n  385      , home: base\n  386    };\n  ...\n  403  \n  404      // Absolute\n  405:     var host = req.headers.host\n  406        , tls = req.connection.encrypted;\n  407      url = 'http' + (tls ? 's' : '') + '://' + host + url;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\basicAuth.js:\n   60  \n   61    return function(req, res, next) {\n   62:     var authorization = req.headers.authorization;\n   63  \n   64      if (req.remoteUser) return next();\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\bodyParser.js:\n   24  \n   25  function mime(req) {\n   26:   var str = req.headers['content-type'] || '';\n   27    return str.split(';')[0];\n   28  }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\cookieParser.js:\n   32  module.exports = function cookieParser(){\n   33    return function cookieParser(req, res, next) {\n   34:     var cookie = req.headers.cookie;\n   35      if (req.cookies) return next();\n   36      req.cookies = {};\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\csrf.js:\n  102    return (req.body && req.body._csrf)\n  103      || (req.query && req.query._csrf)\n  104:     || (req.headers['x-csrf-token']);\n  105  }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\directory.js:\n   55  \n   56    return function directory(req, res, next) {\n   57:     var accept = req.headers.accept || 'text/plain'\n   58        , url = parse(req.url)\n   59        , dir = decodeURIComponent(url.pathname)\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\errorHandler.js:\n   57      if (dumpExceptions) console.error(err.stack);\n   58      if (showStack) {\n   59:       var accept = req.headers.accept || '';\n   60        // html\n   61        if (~accept.indexOf('html')) {\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\limit.js:\n   30    return function limit(req, res, next){\n   31      var received = 0\n   32:       , len = req.headers['content-length']\n   33:         ? parseInt(req.headers['content-length'], 10)\n   34          : null;\n   35  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\logger.js:\n   68   *   as \":type\" in this case.\n   69   *\n   70:  *      connect.logger.token('type', function(req, res){ return req.headers['content-type']; })\n   71   *\n   72   * Defining Formats:\n   ..\n  265  \n  266  exports.token('referrer', function(req){\n  267:   return req.headers['referer'] || req.headers['referrer'];\n  268  });\n  269  \n  ...\n  283  \n  284  exports.token('user-agent', function(req){\n  285:   return req.headers['user-agent'];\n  286  });\n  287  \n  ...\n  289  \n  290  exports.token('req', function(req, res, field){\n  291:   return req.headers[field.toLowerCase()];\n  292  });\n  293  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\methodOverride.js:\n   29        delete req.body[key];\n   30      // check X-HTTP-Method-Override\n   31:     } else if (req.headers['x-http-method-override']) {\n   32:       req.method = req.headers['x-http-method-override'].toUpperCase();\n   33      }\n   34      \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\session.js:\n   51  \n   52  function defaultFingerprint(req) {\n   53:   var ua = req.headers['user-agent'] || '';\n   54    return ua.replace(/;?\\schromeframe\\/[\\d\\.]+/, '');\n   55  };\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\static.js:\n   99    // setup\n  100    var maxAge = options.maxAge || 0\n  101:     , ranges = req.headers.range\n  102      , head = 'HEAD' == req.method\n  103      , get = 'GET' == req.method\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\staticCache.js:\n   56    return function staticCache(req, res, next){\n   57      var path = url.parse(req.url).pathname\n   58:       , ranges = req.headers.range\n   59        , hit = cache.get(path)\n   60        , hitCC\n   ..\n  115        // parse cache-controls\n  116        hitCC = utils.parseCacheControl(header['cache-control'] || '');\n  117:       uaCC = utils.parseCacheControl(req.headers['cache-control'] || '');\n  118  \n  119        // check if we must revalidate(bypass)\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\vhost.js:\n   33    if (server.onvhost) server.onvhost(hostname);\n   34    return function vhost(req, res, next){\n   35:     if (!req.headers.host) return next();\n   36:     var host = req.headers.host.split(':')[0];\n   37      if (req.subdomains = regexp.exec(host)) {\n   38        req.subdomains = req.subdomains[0].split('.').slice(0, -1);\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\utils.js:\n  241  exports.modified = function(req, res, headers) {\n  242    var headers = headers || res._headers || {}\n  243:     , modifiedSince = req.headers['if-modified-since']\n  244      , lastModified = headers['last-modified']\n  245:     , noneMatch = req.headers['if-none-match']\n  246      , etag = headers['etag'];\n  247  \n  ...\n  290  \n  291  exports.conditionalGET = function(req) {\n  292:   return req.headers['if-modified-since']\n  293:     || req.headers['if-none-match'];\n  294  };\n  295  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\node_modules\\formidable\\lib\\incoming_form.js:\n   78    };\n   79  \n   80:   this.writeHeaders(req.headers);\n   81  \n   82    var self = this;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\node_modules\\formidable\\test\\legacy\\simple\\test-incoming-form.js:\n   58  \n   59    gently.expect(form, 'writeHeaders', function(headers) {\n   60:     assert.strictEqual(headers, REQ.headers);\n   61    });\n   62  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\paperboy\\lib\\paperboy.js:\n   43      var statCode;\n   44      //Check to see if we can send a 304 and skip the send\n   45:     if(req.headers['if-none-match'] == etag){\n   46        statCode = 304;\n   47        headerFields['Content-Length'] = 0;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\manager.js:\n  692  Manager.prototype.handleHandshake = function (data, req, res) {\n  693    var self = this\n  694:     , origin = req.headers.origin\n  695      , headers = {\n  696          'Content-Type': 'text/plain'\n  ...\n  723      headers['Access-Control-Allow-Origin'] = '*';\n  724  \n  725:     if (req.headers.cookie) {\n  726        headers['Access-Control-Allow-Credentials'] = 'true';\n  727      }\n  ...\n  906      var data = {\n  907          query: uri.query || {}\n  908:       , headers: req.headers\n  909        , request: req\n  910        , path: path\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\static.js:\n  295  \n  296    function answer (reply) {\n  297:     var cached = req.headers['if-none-match'] === reply.etag;\n  298      if (cached && self.manager.enabled('browser client etag')) {\n  299        return write(304);\n  300      }\n  301  \n  302:     var accept = req.headers['accept-encoding'] || ''\n  303        , gzip = !!~accept.toLowerCase().indexOf('gzip')\n  304        , mime = reply.mime\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\http.js:\n   46      var buffer = ''\n   47        , res = req.res\n   48:       , origin = req.headers.origin\n   49        , headers = { 'Content-Length': 1 }\n   50        , self = this;\n   ..\n   65        headers['Access-Control-Allow-Origin'] = '*';\n   66  \n   67:       if (req.headers.cookie) {\n   68          headers['Access-Control-Allow-Credentials'] = 'true';\n   69        }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket.js:\n   27  function WebSocket (mng, data, req) {\n   28    var transport\n   29:     , version = req.headers['sec-websocket-version'];\n   30    if (typeof version !== 'undefined' && typeof protocolVersions[version] !== 'undefined') {\n   31      transport = new protocolVersions[version](mng, data, req);\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\default.js:\n   83    this.buffered = [];\n   84  \n   85:   if (this.req.headers.upgrade !== 'WebSocket') {\n   86      this.log.warn(this.name + ' connection invalid');\n   87      this.end();\n   ..\n   89    }\n   90  \n   91:   var origin = this.req.headers.origin\n   92      , location = (this.socket.encrypted ? 'wss' : 'ws')\n   93:                + '://' + this.req.headers.host + this.req.url\n   94      , waitingForNonce = false;\n   95  \n   96:   if (this.req.headers['sec-websocket-key1']) {\n   97      // If we don't have the nonce yet, wait for it (HAProxy compatibility).\n   98      if (! (this.req.head && this.req.head.length >= 8)) {\n   ..\n  108      ];\n  109  \n  110:     if (this.req.headers['sec-websocket-protocol']){\n  111        headers.push('Sec-WebSocket-Protocol: '\n  112:           + this.req.headers['sec-websocket-protocol']);\n  113      }\n  114    } else {\n  ...\n  223  WebSocket.prototype.proveReception = function (headers) {\n  224    var self = this\n  225:     , k1 = this.req.headers['sec-websocket-key1']\n  226:     , k2 = this.req.headers['sec-websocket-key2'];\n  227  \n  228    if (k1 && k2){\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-07-12.js:\n   92    var self = this;\n   93  \n   94:   if (typeof this.req.headers.upgrade === 'undefined' || \n   95:       this.req.headers.upgrade.toLowerCase() !== 'websocket') {\n   96      this.log.warn(this.name + ' connection invalid');\n   97      this.end();\n   ..\n   99    }\n  100  \n  101:   var origin = this.req.headers['sec-websocket-origin']\n  102      , location = (this.socket.encrypted ? 'wss' : 'ws')\n  103:                + '://' + this.req.headers.host + this.req.url;\n  104    \n  105    if (!this.verifyOrigin(origin)) {\n  ...\n  109    }\n  110    \n  111:   if (!this.req.headers['sec-websocket-key']) {\n  112      this.log.warn(this.name + ' connection invalid: received no key');\n  113      this.end();\n  ...\n  116      \n  117    // calc key\n  118:   var key = this.req.headers['sec-websocket-key'];  \n  119    var shasum = crypto.createHash('sha1');  \n  120    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-16.js:\n   92    var self = this;\n   93  \n   94:   if (typeof this.req.headers.upgrade === 'undefined' || \n   95:       this.req.headers.upgrade.toLowerCase() !== 'websocket') {\n   96      this.log.warn(this.name + ' connection invalid');\n   97      this.end();\n   ..\n   99    }\n  100  \n  101:   var origin = this.req.headers['origin']\n  102      , location = (this.socket.encrypted ? 'wss' : 'ws')\n  103:                + '://' + this.req.headers.host + this.req.url;\n  104    \n  105    if (!this.verifyOrigin(origin)) {\n  ...\n  109    }\n  110    \n  111:   if (!this.req.headers['sec-websocket-key']) {\n  112      this.log.warn(this.name + ' connection invalid: received no key');\n  113      this.end();\n  ...\n  116      \n  117    // calc key\n  118:   var key = this.req.headers['sec-websocket-key'];  \n  119    var shasum = crypto.createHash('sha1');  \n  120    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-17.js:\n   86    var self = this;\n   87  \n   88:   if (this.req.headers.upgrade !== 'websocket') {\n   89      this.log.warn(this.name + ' connection invalid');\n   90      this.end();\n   ..\n   92    }\n   93  \n   94:   var origin = this.req.headers['origin']\n   95      , location = (this.socket.encrypted ? 'wss' : 'ws')\n   96:                + '://' + this.req.headers.host + this.req.url;\n   97    \n   98    if (!this.verifyOrigin(origin)) {\n   ..\n  102    }\n  103    \n  104:   if (!this.req.headers['sec-websocket-key']) {\n  105      this.log.warn(this.name + ' connection invalid: received no key');\n  106      this.end();\n  ...\n  109      \n  110    // calc key\n  111:   var key = this.req.headers['sec-websocket-key'];  \n  112    var shasum = crypto.createHash('sha1');  \n  113    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\xhr-polling.js:\n   51    HTTPPolling.prototype.doWrite.call(this);\n   52  \n   53:   var origin = this.req.headers.origin\n   54      , headers = {\n   55            'Content-Type': 'text/plain; charset=UTF-8'\n   ..\n   62      headers['Access-Control-Allow-Origin'] = '*';\n   63  \n   64:     if (this.req.headers.cookie) {\n   65        headers['Access-Control-Allow-Credentials'] = 'true';\n   66      }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\node_modules\\socket.io-client\\node_modules\\xmlhttprequest\\tests\\test-headers.js:\n    8  var server = http.createServer(function (req, res) {\n    9  	// Test setRequestHeader\n   10: 	assert.equal(\"Foobar\", req.headers[\"x-test\"]);\n   11  	\n   12  	var body = \"Hello World\";\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\vid-streamer\\index - Copy.js:\n   66  	var stat;\n   67  	var info = {};\n   68: 	var range = typeof req.headers.range === \"string\" ? req.headers.range : undefined;\n   69  	var reqUrl = url.parse(req.url, true);\n   70  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\vid-streamer\\index.js:\n   68  	var stat;\n   69  	var info = {};\n   70: 	var range = typeof req.headers.range === \"string\" ? req.headers.range : undefined;\n   71  	var reqUrl = url.parse(req.url, true);\n   72  \n\n77 matches across 32 files\n\n\nSearching 1292 files for \"req.header\"\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\History.md:\n  321    * Added HTTPS support\n  322    * Added `res.cookie()` maxAge support\n  323:   * Added `req.header()` _Referrer_ / _Referer_ special-case, either works\n  324    * Added mount support for `res.redirect()`, now respects the mount-point\n  325    * Added `union()` util, taking place of `merge(clone())` combo\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\lib\\request.js:\n   37   * Examples:\n   38   *\n   39:  *     req.header('Content-Type');\n   40   *     // => \"text/plain\"\n   41   *     \n   42:  *     req.header('content-type');\n   43   *     // => \"text/plain\"\n   44   *     \n   45:  *     req.header('Accept');\n   46   *     // => undefined\n   47   *     \n   48:  *     req.header('Accept', 'text/html');\n   49   *     // => \"text/html\"\n   50   *\n   ..\n   55   */\n   56  \n   57: req.header = function(name, defaultValue){\n   58    switch (name = name.toLowerCase()) {\n   59      case 'referer':\n   ..\n  271   * \n  272   *       app.is('an image', function(req){\n  273:  *         return 0 == req.headers['content-type'].indexOf('image');\n  274   *       });\n  275   *       \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\lib\\response.js:\n  382    // Setup redirect map\n  383    var map = {\n  384:       back: req.header('Referrer', base)\n  385      , home: base\n  386    };\n  ...\n  403  \n  404      // Absolute\n  405:     var host = req.headers.host\n  406        , tls = req.connection.encrypted;\n  407      url = 'http' + (tls ? 's' : '') + '://' + host + url;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\basicAuth.js:\n   60  \n   61    return function(req, res, next) {\n   62:     var authorization = req.headers.authorization;\n   63  \n   64      if (req.remoteUser) return next();\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\bodyParser.js:\n   24  \n   25  function mime(req) {\n   26:   var str = req.headers['content-type'] || '';\n   27    return str.split(';')[0];\n   28  }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\cookieParser.js:\n   32  module.exports = function cookieParser(){\n   33    return function cookieParser(req, res, next) {\n   34:     var cookie = req.headers.cookie;\n   35      if (req.cookies) return next();\n   36      req.cookies = {};\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\csrf.js:\n  102    return (req.body && req.body._csrf)\n  103      || (req.query && req.query._csrf)\n  104:     || (req.headers['x-csrf-token']);\n  105  }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\directory.js:\n   55  \n   56    return function directory(req, res, next) {\n   57:     var accept = req.headers.accept || 'text/plain'\n   58        , url = parse(req.url)\n   59        , dir = decodeURIComponent(url.pathname)\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\errorHandler.js:\n   57      if (dumpExceptions) console.error(err.stack);\n   58      if (showStack) {\n   59:       var accept = req.headers.accept || '';\n   60        // html\n   61        if (~accept.indexOf('html')) {\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\limit.js:\n   30    return function limit(req, res, next){\n   31      var received = 0\n   32:       , len = req.headers['content-length']\n   33:         ? parseInt(req.headers['content-length'], 10)\n   34          : null;\n   35  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\logger.js:\n   68   *   as \":type\" in this case.\n   69   *\n   70:  *      connect.logger.token('type', function(req, res){ return req.headers['content-type']; })\n   71   *\n   72   * Defining Formats:\n   ..\n  265  \n  266  exports.token('referrer', function(req){\n  267:   return req.headers['referer'] || req.headers['referrer'];\n  268  });\n  269  \n  ...\n  283  \n  284  exports.token('user-agent', function(req){\n  285:   return req.headers['user-agent'];\n  286  });\n  287  \n  ...\n  289  \n  290  exports.token('req', function(req, res, field){\n  291:   return req.headers[field.toLowerCase()];\n  292  });\n  293  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\methodOverride.js:\n   29        delete req.body[key];\n   30      // check X-HTTP-Method-Override\n   31:     } else if (req.headers['x-http-method-override']) {\n   32:       req.method = req.headers['x-http-method-override'].toUpperCase();\n   33      }\n   34      \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\session.js:\n   51  \n   52  function defaultFingerprint(req) {\n   53:   var ua = req.headers['user-agent'] || '';\n   54    return ua.replace(/;?\\schromeframe\\/[\\d\\.]+/, '');\n   55  };\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\static.js:\n   99    // setup\n  100    var maxAge = options.maxAge || 0\n  101:     , ranges = req.headers.range\n  102      , head = 'HEAD' == req.method\n  103      , get = 'GET' == req.method\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\staticCache.js:\n   56    return function staticCache(req, res, next){\n   57      var path = url.parse(req.url).pathname\n   58:       , ranges = req.headers.range\n   59        , hit = cache.get(path)\n   60        , hitCC\n   ..\n  115        // parse cache-controls\n  116        hitCC = utils.parseCacheControl(header['cache-control'] || '');\n  117:       uaCC = utils.parseCacheControl(req.headers['cache-control'] || '');\n  118  \n  119        // check if we must revalidate(bypass)\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\middleware\\vhost.js:\n   33    if (server.onvhost) server.onvhost(hostname);\n   34    return function vhost(req, res, next){\n   35:     if (!req.headers.host) return next();\n   36:     var host = req.headers.host.split(':')[0];\n   37      if (req.subdomains = regexp.exec(host)) {\n   38        req.subdomains = req.subdomains[0].split('.').slice(0, -1);\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\lib\\utils.js:\n  241  exports.modified = function(req, res, headers) {\n  242    var headers = headers || res._headers || {}\n  243:     , modifiedSince = req.headers['if-modified-since']\n  244      , lastModified = headers['last-modified']\n  245:     , noneMatch = req.headers['if-none-match']\n  246      , etag = headers['etag'];\n  247  \n  ...\n  290  \n  291  exports.conditionalGET = function(req) {\n  292:   return req.headers['if-modified-since']\n  293:     || req.headers['if-none-match'];\n  294  };\n  295  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\node_modules\\formidable\\lib\\incoming_form.js:\n   78    };\n   79  \n   80:   this.writeHeaders(req.headers);\n   81  \n   82    var self = this;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\express\\node_modules\\connect\\node_modules\\formidable\\test\\legacy\\simple\\test-incoming-form.js:\n   58  \n   59    gently.expect(form, 'writeHeaders', function(headers) {\n   60:     assert.strictEqual(headers, REQ.headers);\n   61    });\n   62  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\paperboy\\lib\\paperboy.js:\n   43      var statCode;\n   44      //Check to see if we can send a 304 and skip the send\n   45:     if(req.headers['if-none-match'] == etag){\n   46        statCode = 304;\n   47        headerFields['Content-Length'] = 0;\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\manager.js:\n  692  Manager.prototype.handleHandshake = function (data, req, res) {\n  693    var self = this\n  694:     , origin = req.headers.origin\n  695      , headers = {\n  696          'Content-Type': 'text/plain'\n  ...\n  723      headers['Access-Control-Allow-Origin'] = '*';\n  724  \n  725:     if (req.headers.cookie) {\n  726        headers['Access-Control-Allow-Credentials'] = 'true';\n  727      }\n  ...\n  906      var data = {\n  907          query: uri.query || {}\n  908:       , headers: req.headers\n  909        , request: req\n  910        , path: path\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\static.js:\n  295  \n  296    function answer (reply) {\n  297:     var cached = req.headers['if-none-match'] === reply.etag;\n  298      if (cached && self.manager.enabled('browser client etag')) {\n  299        return write(304);\n  300      }\n  301  \n  302:     var accept = req.headers['accept-encoding'] || ''\n  303        , gzip = !!~accept.toLowerCase().indexOf('gzip')\n  304        , mime = reply.mime\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\http.js:\n   46      var buffer = ''\n   47        , res = req.res\n   48:       , origin = req.headers.origin\n   49        , headers = { 'Content-Length': 1 }\n   50        , self = this;\n   ..\n   65        headers['Access-Control-Allow-Origin'] = '*';\n   66  \n   67:       if (req.headers.cookie) {\n   68          headers['Access-Control-Allow-Credentials'] = 'true';\n   69        }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket.js:\n   27  function WebSocket (mng, data, req) {\n   28    var transport\n   29:     , version = req.headers['sec-websocket-version'];\n   30    if (typeof version !== 'undefined' && typeof protocolVersions[version] !== 'undefined') {\n   31      transport = new protocolVersions[version](mng, data, req);\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\default.js:\n   83    this.buffered = [];\n   84  \n   85:   if (this.req.headers.upgrade !== 'WebSocket') {\n   86      this.log.warn(this.name + ' connection invalid');\n   87      this.end();\n   ..\n   89    }\n   90  \n   91:   var origin = this.req.headers.origin\n   92      , location = (this.socket.encrypted ? 'wss' : 'ws')\n   93:                + '://' + this.req.headers.host + this.req.url\n   94      , waitingForNonce = false;\n   95  \n   96:   if (this.req.headers['sec-websocket-key1']) {\n   97      // If we don't have the nonce yet, wait for it (HAProxy compatibility).\n   98      if (! (this.req.head && this.req.head.length >= 8)) {\n   ..\n  108      ];\n  109  \n  110:     if (this.req.headers['sec-websocket-protocol']){\n  111        headers.push('Sec-WebSocket-Protocol: '\n  112:           + this.req.headers['sec-websocket-protocol']);\n  113      }\n  114    } else {\n  ...\n  223  WebSocket.prototype.proveReception = function (headers) {\n  224    var self = this\n  225:     , k1 = this.req.headers['sec-websocket-key1']\n  226:     , k2 = this.req.headers['sec-websocket-key2'];\n  227  \n  228    if (k1 && k2){\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-07-12.js:\n   92    var self = this;\n   93  \n   94:   if (typeof this.req.headers.upgrade === 'undefined' || \n   95:       this.req.headers.upgrade.toLowerCase() !== 'websocket') {\n   96      this.log.warn(this.name + ' connection invalid');\n   97      this.end();\n   ..\n   99    }\n  100  \n  101:   var origin = this.req.headers['sec-websocket-origin']\n  102      , location = (this.socket.encrypted ? 'wss' : 'ws')\n  103:                + '://' + this.req.headers.host + this.req.url;\n  104    \n  105    if (!this.verifyOrigin(origin)) {\n  ...\n  109    }\n  110    \n  111:   if (!this.req.headers['sec-websocket-key']) {\n  112      this.log.warn(this.name + ' connection invalid: received no key');\n  113      this.end();\n  ...\n  116      \n  117    // calc key\n  118:   var key = this.req.headers['sec-websocket-key'];  \n  119    var shasum = crypto.createHash('sha1');  \n  120    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-16.js:\n   92    var self = this;\n   93  \n   94:   if (typeof this.req.headers.upgrade === 'undefined' || \n   95:       this.req.headers.upgrade.toLowerCase() !== 'websocket') {\n   96      this.log.warn(this.name + ' connection invalid');\n   97      this.end();\n   ..\n   99    }\n  100  \n  101:   var origin = this.req.headers['origin']\n  102      , location = (this.socket.encrypted ? 'wss' : 'ws')\n  103:                + '://' + this.req.headers.host + this.req.url;\n  104    \n  105    if (!this.verifyOrigin(origin)) {\n  ...\n  109    }\n  110    \n  111:   if (!this.req.headers['sec-websocket-key']) {\n  112      this.log.warn(this.name + ' connection invalid: received no key');\n  113      this.end();\n  ...\n  116      \n  117    // calc key\n  118:   var key = this.req.headers['sec-websocket-key'];  \n  119    var shasum = crypto.createHash('sha1');  \n  120    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\websocket\\hybi-17.js:\n   86    var self = this;\n   87  \n   88:   if (this.req.headers.upgrade !== 'websocket') {\n   89      this.log.warn(this.name + ' connection invalid');\n   90      this.end();\n   ..\n   92    }\n   93  \n   94:   var origin = this.req.headers['origin']\n   95      , location = (this.socket.encrypted ? 'wss' : 'ws')\n   96:                + '://' + this.req.headers.host + this.req.url;\n   97    \n   98    if (!this.verifyOrigin(origin)) {\n   ..\n  102    }\n  103    \n  104:   if (!this.req.headers['sec-websocket-key']) {\n  105      this.log.warn(this.name + ' connection invalid: received no key');\n  106      this.end();\n  ...\n  109      \n  110    // calc key\n  111:   var key = this.req.headers['sec-websocket-key'];  \n  112    var shasum = crypto.createHash('sha1');  \n  113    shasum.update(key + \"258EAFA5-E914-47DA-95CA-C5AB0DC85B11\");  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\lib\\transports\\xhr-polling.js:\n   51    HTTPPolling.prototype.doWrite.call(this);\n   52  \n   53:   var origin = this.req.headers.origin\n   54      , headers = {\n   55            'Content-Type': 'text/plain; charset=UTF-8'\n   ..\n   62      headers['Access-Control-Allow-Origin'] = '*';\n   63  \n   64:     if (this.req.headers.cookie) {\n   65        headers['Access-Control-Allow-Credentials'] = 'true';\n   66      }\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\node-inspector\\node_modules\\socket.io\\node_modules\\socket.io-client\\node_modules\\xmlhttprequest\\tests\\test-headers.js:\n    8  var server = http.createServer(function (req, res) {\n    9  	// Test setRequestHeader\n   10: 	assert.equal(\"Foobar\", req.headers[\"x-test\"]);\n   11  	\n   12  	var body = \"Hello World\";\n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\vid-streamer\\index - Copy.js:\n   66  	var stat;\n   67  	var info = {};\n   68: 	var range = typeof req.headers.range === \"string\" ? req.headers.range : undefined;\n   69  	var reqUrl = url.parse(req.url, true);\n   70  \n\nC:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\vid-streamer\\index.js:\n   68  	var stat;\n   69  	var info = {};\n   70: 	var range = typeof req.headers.range === \"string\" ? req.headers.range : undefined;\n   71  	var reqUrl = url.parse(req.url, true);\n   72  \n\n77 matches across 32 files\n",
+			"settings":
+			{
+				"buffer_size": 50153,
+				"line_ending": "Windows",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "node_modules/vid-streamer/index - Copy.js",
+			"settings":
+			{
+				"buffer_size": 9436,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "node_modules/vid-streamer/index.js",
+			"settings":
+			{
+				"buffer_size": 9493,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "do",
+			"settings":
+			{
+				"buffer_size": 58,
+				"line_ending": "Windows",
+				"name": "move to new jade express"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 336.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"plain",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 426.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/vid-streamer/config/vidStreamer.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/vid-streamer/config/vidStreamer-sample.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/vidStreamer/config/vidStreamer.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/index.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/layout.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/config/database-sample.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/config/app-sample.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/config/database.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/config/app.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/routes/search.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/.gitignore",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/.npmignore",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/routes/video.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/mysql/lib/client.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/package.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/vid-streamer/index.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/vidStreamer/config/vidStreamer katie.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/routes/streamer.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/public/javascripts/jquery.ui.vg.start.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/Node Video Gallery.sublime-workspace",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/Node Video Gallery.sublime-project",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/routes/index.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/routes/feedback.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/video-gallery/crumbs.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/video-gallery/VideoItem.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/video-gallery/spell.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/video-gallery/porterStemmer.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/video-gallery/helper.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/video-gallery/database.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/.httpd.conf",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/index.php",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/video.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/suggestName.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/search.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/embedVideo.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/embedUnknownVideo.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/embedNoVideo.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/embedHeader.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/contactThanks.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/contact.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/browseError.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/batchAlerts.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/_header.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/public/stylesheets/style.css",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/public/javascripts/jquery.fn.vg.effects.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/public/javascripts/jquery.fn.cookie.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/app.js",
+		"/C/inetpub/wwwroot/vg/system/database/drivers/mysql/mysql_driver.php",
+		"/C/inetpub/wwwroot/vg/system/database/drivers/mssql/mssql_driver.php",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/validator/lib/filter.js",
+		"/C/Users/Andrew/Downloads/timetable.php",
+		"/C/inetpub/wwwroot/videos/bipbop.m3u8",
+		"/C/Users/Andrew/Downloads/prog_index.m3u8",
+		"/C/inetpub/wwwroot/vg/zignore/tstvidstreamer.html",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Streamer/Streaming/commands",
+		"/C/inetpub/wwwroot/videos/dream.m3u8",
+		"/C/inetpub/wwwroot/bipbop.html",
+		"/C/inetpub/wwwroot/test.htm",
+		"/C/inetpub/wwwroot/streaming/dream.m3u8",
+		"/C/Users/Andrew/AppData/Roaming/vlc/vlcrc",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Streamer/videos/stream/rihanna2.mp4",
+		"/C/inetpub/wwwroot/vg/system/database/DB_driver.php",
+		"/C/inetpub/wwwroot/vg/system/database/DB_utility.php",
+		"/C/inetpub/wwwroot/vg/system/database/DB_result.php",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/mysql/fake_server.js",
+		"/C/inetpub/wwwroot/vg/system/core/Security.php",
+		"/C/inetpub/wwwroot/vg/system/core/Router.php",
+		"/C/inetpub/wwwroot/vg/system/core/CodeIgniter.php",
+		"/C/inetpub/wwwroot/vg/system/database/DB.php",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/config/app josie.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Streamer/node_modules/vid-streamer/package.json",
+		"/C/Users/Andrew/node_modules/vid-streamer/index.js",
+		"/C/Users/Andrew/node_modules/vid-streamer/package.json",
+		"/C/Users/Andrew/node_modules/vid-streamer/README.md",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Streamer/node_modules/vid-streamer/node_modules/konphyg/package.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Streamer/node_modules/vid-streamer/.gitignore",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Streamer/node_modules/vid-streamer/.npmignore",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/express/History.md",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/jade/History.md",
+		"/D/Incremental/Node Video Gallery/app.js",
+		"/D/Incremental/Node Video Gallery/config/app.json",
+		"/C/inetpub/wwwroot/wordpress/wp-config.php",
+		"/C/inetpub/wwwroot/vg/application/config/database.php",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Proxy/proxy.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/config/database josie.json",
+		"/C/Users/Andrew/Desktop/countdown.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Streamer/node_modules/vidStreamer/config/app.json",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/node_modules/vidStreamer/index.js",
+		"/C/Users/Andrew/Desktop/ajax-proxy.php",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/public/javascripts/jquery.ui.vg.crumbs.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/unknownVideo.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/suggestNameThanks.jade",
+		"/C/Users/Andrew/Desktop/test.js",
+		"/C/Program Files (x86)/nodejs/node_modules/npm/package.json",
+		"/C/Program Files (x86)/nodejs/node_modules/npm/README.md",
+		"/C/Users/Andrew/Desktop/configure",
+		"/C/Users/Andrew/Desktop/error_log",
+		"/C/Users/Andrew/Desktop/suexec.log",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/noVideo.jade",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/views/embedVideo",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/public/javascripts/jquery.ui.vg.results.js",
+		"/C/Users/Andrew/Documents/Visual Studio 2010/Projects/Node Video Gallery/public/javascripts/jquery.ui.vg.video.js",
+		"/C/Users/Andrew/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Andrew/AppData/Roaming/Sublime Text 2/Packages/User/BracketHighlighter.sublime-settings",
+		"/C/Users/Andrew/AppData/Roaming/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Andrew/AppData/Roaming/Sublime Text 2/Packages/BracketHighlighter/BracketHighlighter.sublime-settings",
+		"/C/Users/Andrew/AppData/Roaming/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/C/Users/Andrew/AppData/Local/Temp/wz57ca/rpy2-2.2.3/rpy/rpy_classic.py",
+		"/C/Users/Andrew/AppData/Local/Temp/wz56ef/rpy2-2.2.3/rpy/rpy_classic.py",
+		"/C/Users/Andrew/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 88.0,
+		"where_history":
+		[
+			"C:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\,-\"C:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\"",
+			"C:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\,-C:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules",
+			"C:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\",
+			"C:\\Users\\Andrew\\Documents\\Visual Studio 2010\\Projects\\Node Video Gallery\\node_modules\\mysql",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"req.header",
+			"req.send",
+			"\":.*",
+			"\\t\"",
+			"includes",
+			"require(\"video-gallery/",
+			"require",
+			"_header",
+			"rendervideoside",
+			"getrelated",
+			"console.log",
+			"spellcount",
+			"spellquery",
+			"queryand",
+			"queryfiltersbuil",
+			"querychunk",
+			"buildquery2",
+			"altword",
+			"joinalts",
+			"splitwordslist",
+			"sanitize",
+			"***",
+			"**",
+			"addslashes",
+			"media.example.com/segment",
+			"webm",
+			"escape",
+			"escape_str",
+			"class",
+			"optimize_t",
+			"escape_str",
+			"refname",
+			"***",
+			"range",
+			"siteurl",
+			"app.settings",
+			"development",
+			"production",
+			"development",
+			"images/theme",
+			"spinner",
+			"spinner-",
+			"settings",
+			"settings:",
+			"videoslist",
+			"config",
+			".header",
+			"config",
+			"echo",
+			"curl_init",
+			"config",
+			"spellQuery",
+			"removeunwantedw",
+			"cookiepath",
+			"sessioncookiename",
+			"sessioncookietable",
+			"3000",
+			"'",
+			"***",
+			"**",
+			"suggestnamethanks",
+			"/videos",
+			"\" \\+\\n- \"\\s*",
+			"view.url",
+			"novideo",
+			"\"embed",
+			"embed",
+			"embedvideo",
+			"\"",
+			"view.count =",
+			"getrelatedvideo",
+			"view.videos",
+			"similarvideo",
+			".results .box",
+			".click",
+			"videoidx",
+			"videoplayer",
+			"videoslist",
+			"altvideos",
+			"batch =",
+			"queryfiel",
+			"queryfield",
+			"queryresults",
+			"results",
+			"addModelhelpers",
+			"count",
+			"batch",
+			"next.",
+			"prev.",
+			"renderresu",
+			"***",
+			"cookie",
+			"setcachevalid",
+			"videoList",
+			"videosList",
+			"videoList",
+			"view.count"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"** - ",
+			"- **",
+			"require(__dirname + \"/models/",
+			"katie/videos/out00",
+			"\"",
+			" ",
+			"\\\"",
+			"out",
+			"view.prev."
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app.js",
+					"settings":
+					{
+						"buffer_size": 2759,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								719,
+								719
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"text-indent": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"jquery": true,
+								"latedef": true,
+								"newcap": true,
+								"node": true,
+								"regexdash": true,
+								"strict": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": false
+							},
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 1,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"Python Django": "python"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "package.json",
+					"settings":
+					{
+						"buffer_size": 727,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								163,
+								163
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"text-indent": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"jquery": true,
+								"latedef": true,
+								"newcap": true,
+								"node": true,
+								"regexdash": true,
+								"strict": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": false
+							},
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 1,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"Python Django": "python"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "README.md",
+					"settings":
+					{
+						"buffer_size": 5365,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								430,
+								430
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"text-indent": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"jquery": true,
+								"latedef": true,
+								"newcap": true,
+								"node": true,
+								"regexdash": true,
+								"strict": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": false
+							},
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 1,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"Python Django": "python"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"settings":
+					{
+						"buffer_size": 50153,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										377,
+										387
+									],
+									[
+										750,
+										760
+									],
+									[
+										840,
+										850
+									],
+									[
+										930,
+										940
+									],
+									[
+										1011,
+										1021
+									],
+									[
+										1120,
+										1130
+									],
+									[
+										1333,
+										1343
+									],
+									[
+										1599,
+										1609
+									],
+									[
+										1723,
+										1733
+									],
+									[
+										2079,
+										2089
+									],
+									[
+										2361,
+										2371
+									],
+									[
+										2717,
+										2727
+									],
+									[
+										3054,
+										3064
+									],
+									[
+										3323,
+										3333
+									],
+									[
+										3707,
+										3717
+									],
+									[
+										4036,
+										4046
+									],
+									[
+										4092,
+										4102
+									],
+									[
+										4418,
+										4428
+									],
+									[
+										4566,
+										4576
+									],
+									[
+										4592,
+										4602
+									],
+									[
+										4716,
+										4726
+									],
+									[
+										4847,
+										4857
+									],
+									[
+										5150,
+										5160
+									],
+									[
+										5217,
+										5227
+									],
+									[
+										5506,
+										5516
+									],
+									[
+										5833,
+										5843
+									],
+									[
+										6206,
+										6216
+									],
+									[
+										6446,
+										6456
+									],
+									[
+										6803,
+										6813
+									],
+									[
+										6858,
+										6868
+									],
+									[
+										7284,
+										7294
+									],
+									[
+										7395,
+										7405
+									],
+									[
+										7547,
+										7557
+									],
+									[
+										7594,
+										7604
+									],
+									[
+										7851,
+										7861
+									],
+									[
+										8193,
+										8203
+									],
+									[
+										8473,
+										8483
+									],
+									[
+										8849,
+										8859
+									],
+									[
+										9023,
+										9033
+									],
+									[
+										9217,
+										9227
+									],
+									[
+										9490,
+										9500
+									],
+									[
+										9684,
+										9694
+									],
+									[
+										10045,
+										10055
+									],
+									[
+										10231,
+										10241
+									],
+									[
+										10582,
+										10592
+									],
+									[
+										11006,
+										11016
+									],
+									[
+										11181,
+										11191
+									],
+									[
+										11300,
+										11310
+									],
+									[
+										11396,
+										11406
+									],
+									[
+										11629,
+										11639
+									],
+									[
+										11746,
+										11756
+									],
+									[
+										11936,
+										11946
+									],
+									[
+										11993,
+										12003
+									],
+									[
+										12284,
+										12294
+									],
+									[
+										12342,
+										12352
+									],
+									[
+										12531,
+										12541
+									],
+									[
+										12667,
+										12677
+									],
+									[
+										12799,
+										12809
+									],
+									[
+										12999,
+										13009
+									],
+									[
+										13379,
+										13389
+									],
+									[
+										13437,
+										13447
+									],
+									[
+										13626,
+										13636
+									],
+									[
+										13748,
+										13758
+									],
+									[
+										13880,
+										13890
+									],
+									[
+										14080,
+										14090
+									],
+									[
+										14453,
+										14463
+									],
+									[
+										14628,
+										14638
+									],
+									[
+										14750,
+										14760
+									],
+									[
+										14882,
+										14892
+									],
+									[
+										15082,
+										15092
+									],
+									[
+										15483,
+										15493
+									],
+									[
+										15679,
+										15689
+									],
+									[
+										16111,
+										16121
+									],
+									[
+										16363,
+										16373
+									],
+									[
+										16396,
+										16406
+									],
+									[
+										16660,
+										16670
+									],
+									[
+										16693,
+										16703
+									],
+									[
+										17050,
+										17060
+									],
+									[
+										17423,
+										17433
+									],
+									[
+										17513,
+										17523
+									],
+									[
+										17603,
+										17613
+									],
+									[
+										17684,
+										17694
+									],
+									[
+										17793,
+										17803
+									],
+									[
+										18006,
+										18016
+									],
+									[
+										18272,
+										18282
+									],
+									[
+										18396,
+										18406
+									],
+									[
+										18752,
+										18762
+									],
+									[
+										19034,
+										19044
+									],
+									[
+										19390,
+										19400
+									],
+									[
+										19727,
+										19737
+									],
+									[
+										19996,
+										20006
+									],
+									[
+										20380,
+										20390
+									],
+									[
+										20709,
+										20719
+									],
+									[
+										20765,
+										20775
+									],
+									[
+										21091,
+										21101
+									],
+									[
+										21239,
+										21249
+									],
+									[
+										21265,
+										21275
+									],
+									[
+										21389,
+										21399
+									],
+									[
+										21520,
+										21530
+									],
+									[
+										21823,
+										21833
+									],
+									[
+										21890,
+										21900
+									],
+									[
+										22179,
+										22189
+									],
+									[
+										22506,
+										22516
+									],
+									[
+										22879,
+										22889
+									],
+									[
+										23119,
+										23129
+									],
+									[
+										23476,
+										23486
+									],
+									[
+										23531,
+										23541
+									],
+									[
+										23957,
+										23967
+									],
+									[
+										24068,
+										24078
+									],
+									[
+										24220,
+										24230
+									],
+									[
+										24267,
+										24277
+									],
+									[
+										24524,
+										24534
+									],
+									[
+										24866,
+										24876
+									],
+									[
+										25146,
+										25156
+									],
+									[
+										25522,
+										25532
+									],
+									[
+										25696,
+										25706
+									],
+									[
+										25890,
+										25900
+									],
+									[
+										26163,
+										26173
+									],
+									[
+										26357,
+										26367
+									],
+									[
+										26718,
+										26728
+									],
+									[
+										26904,
+										26914
+									],
+									[
+										27255,
+										27265
+									],
+									[
+										27679,
+										27689
+									],
+									[
+										27854,
+										27864
+									],
+									[
+										27973,
+										27983
+									],
+									[
+										28069,
+										28079
+									],
+									[
+										28302,
+										28312
+									],
+									[
+										28419,
+										28429
+									],
+									[
+										28609,
+										28619
+									],
+									[
+										28666,
+										28676
+									],
+									[
+										28957,
+										28967
+									],
+									[
+										29015,
+										29025
+									],
+									[
+										29204,
+										29214
+									],
+									[
+										29340,
+										29350
+									],
+									[
+										29472,
+										29482
+									],
+									[
+										29672,
+										29682
+									],
+									[
+										30052,
+										30062
+									],
+									[
+										30110,
+										30120
+									],
+									[
+										30299,
+										30309
+									],
+									[
+										30421,
+										30431
+									],
+									[
+										30553,
+										30563
+									],
+									[
+										30753,
+										30763
+									],
+									[
+										31126,
+										31136
+									],
+									[
+										31301,
+										31311
+									],
+									[
+										31423,
+										31433
+									],
+									[
+										31555,
+										31565
+									],
+									[
+										31755,
+										31765
+									],
+									[
+										32156,
+										32166
+									],
+									[
+										32352,
+										32362
+									],
+									[
+										32784,
+										32794
+									],
+									[
+										33036,
+										33046
+									],
+									[
+										33069,
+										33079
+									],
+									[
+										33333,
+										33343
+									],
+									[
+										33366,
+										33376
+									],
+									[
+										33723,
+										33733
+									],
+									[
+										34096,
+										34106
+									],
+									[
+										34186,
+										34196
+									],
+									[
+										34276,
+										34286
+									],
+									[
+										34357,
+										34367
+									],
+									[
+										34466,
+										34476
+									],
+									[
+										34679,
+										34689
+									],
+									[
+										34945,
+										34955
+									],
+									[
+										35069,
+										35079
+									],
+									[
+										35425,
+										35435
+									],
+									[
+										35707,
+										35717
+									],
+									[
+										36063,
+										36073
+									],
+									[
+										36400,
+										36410
+									],
+									[
+										36669,
+										36679
+									],
+									[
+										37053,
+										37063
+									],
+									[
+										37382,
+										37392
+									],
+									[
+										37438,
+										37448
+									],
+									[
+										37764,
+										37774
+									],
+									[
+										37912,
+										37922
+									],
+									[
+										37938,
+										37948
+									],
+									[
+										38062,
+										38072
+									],
+									[
+										38193,
+										38203
+									],
+									[
+										38496,
+										38506
+									],
+									[
+										38563,
+										38573
+									],
+									[
+										38852,
+										38862
+									],
+									[
+										39179,
+										39189
+									],
+									[
+										39552,
+										39562
+									],
+									[
+										39792,
+										39802
+									],
+									[
+										40149,
+										40159
+									],
+									[
+										40204,
+										40214
+									],
+									[
+										40630,
+										40640
+									],
+									[
+										40741,
+										40751
+									],
+									[
+										40893,
+										40903
+									],
+									[
+										40940,
+										40950
+									],
+									[
+										41197,
+										41207
+									],
+									[
+										41539,
+										41549
+									],
+									[
+										41819,
+										41829
+									],
+									[
+										42195,
+										42205
+									],
+									[
+										42369,
+										42379
+									],
+									[
+										42563,
+										42573
+									],
+									[
+										42836,
+										42846
+									],
+									[
+										43030,
+										43040
+									],
+									[
+										43391,
+										43401
+									],
+									[
+										43577,
+										43587
+									],
+									[
+										43928,
+										43938
+									],
+									[
+										44352,
+										44362
+									],
+									[
+										44527,
+										44537
+									],
+									[
+										44646,
+										44656
+									],
+									[
+										44742,
+										44752
+									],
+									[
+										44975,
+										44985
+									],
+									[
+										45092,
+										45102
+									],
+									[
+										45282,
+										45292
+									],
+									[
+										45339,
+										45349
+									],
+									[
+										45630,
+										45640
+									],
+									[
+										45688,
+										45698
+									],
+									[
+										45877,
+										45887
+									],
+									[
+										46013,
+										46023
+									],
+									[
+										46145,
+										46155
+									],
+									[
+										46345,
+										46355
+									],
+									[
+										46725,
+										46735
+									],
+									[
+										46783,
+										46793
+									],
+									[
+										46972,
+										46982
+									],
+									[
+										47094,
+										47104
+									],
+									[
+										47226,
+										47236
+									],
+									[
+										47426,
+										47436
+									],
+									[
+										47799,
+										47809
+									],
+									[
+										47974,
+										47984
+									],
+									[
+										48096,
+										48106
+									],
+									[
+										48228,
+										48238
+									],
+									[
+										48428,
+										48438
+									],
+									[
+										48829,
+										48839
+									],
+									[
+										49025,
+										49035
+									],
+									[
+										49457,
+										49467
+									],
+									[
+										49709,
+										49719
+									],
+									[
+										49742,
+										49752
+									],
+									[
+										50006,
+										50016
+									],
+									[
+										50039,
+										50049
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								49716,
+								49716
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"output_tag": 5,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 17985.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "node_modules/vid-streamer/index - Copy.js",
+					"settings":
+					{
+						"buffer_size": 9436,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1872,
+								1873
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"text-indent": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"jquery": true,
+								"latedef": true,
+								"newcap": true,
+								"node": true,
+								"regexdash": true,
+								"strict": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": false
+							},
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 1,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"Python Django": "python"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 514.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "node_modules/vid-streamer/index.js",
+					"settings":
+					{
+						"buffer_size": 9493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1843,
+								1843
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"text-indent": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"devel": true,
+								"evil": true,
+								"jquery": true,
+								"latedef": true,
+								"newcap": true,
+								"node": true,
+								"regexdash": true,
+								"strict": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": false
+							},
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 1,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"Python Django": "python"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "do",
+					"settings":
+					{
+						"buffer_size": 58,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								58,
+								58
+							]
+						],
+						"settings":
+						{
+							"auto_name": "move to new jade express",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 211.0,
+	"status_bar_visible": true
+}

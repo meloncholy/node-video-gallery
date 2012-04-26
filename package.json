@@ -1,0 +1,18 @@
+{
+  "name": "video-gallery",
+  "description": "Video Gallery: A Metro-style video gallery with Ajax, infinite scroll and other fun stuff. Now rewritten in Node.js.",
+  "version": "0.1",
+  "author": "Andrew Weeks <andrew@meloncholy.com>",
+  "dependencies": {
+    "express": "2.5.x",
+    "jade": ">= 0.25.0",
+    "mysql": ">= 0.9.5",
+    "konphyg": ">= 1.0.5"
+  },
+  "keywords": ["video", "gallery", "streaming", "pseudostreaming", "search"],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/meloncholy/node-video-gallery.git"
+  },
+  "main": "index"
+}

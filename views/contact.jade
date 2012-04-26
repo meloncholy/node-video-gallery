@@ -1,0 +1,27 @@
+div.Content
+	a.Close.Round.Button(href="#!")
+	h1 Get in touch&hellip;
+	form(action="#!feedback/submit_name/", method="post")
+		input(type="hidden", name="entry_id", value="XXXX")
+		div.ValidateAlert There are some problems with the form. Please take a look.
+
+		p Ask a question. Report a problem. Tell me something fun. You know what to do. 
+
+		fieldset
+			div.Field
+				textarea#comment.Required(rows="8", cols="30", name="comment")
+				div.Validate Contact forms work better if you include a message. :)
+
+		fieldset
+			div.Field
+				div A little about you (optional, but useful so I can get back to you).
+				label(for="author") Name
+			div.Field
+				input#author(type="text", name="author")
+			label(for="email") Email
+			div.Field
+				input#email.Email(type="text", name="email")
+				div.Validate Your email address doesn&rsquo;t look valid.
+
+		a#submit.Button(href="#!") Send
+		a.Close(href="#!") Close

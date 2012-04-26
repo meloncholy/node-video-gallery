@@ -1,0 +1,77 @@
+div.Background
+a.Logo(href="#{settings.siteUrl}", title="Go to #{settings.siteTitle} home page.")
+
+div.Search.Home
+	div.SearchForm
+		input.SearchInput(type="text")
+		div.Autosuggest
+		div#searchButton.Button Search
+		div#browseButton.Button Browse
+		a#filtersLink(href="#!") Advanced
+		a#contact(href="#!contact/") Contact
+
+		div.Filters
+			div.Container
+				div#difficulty.Slider.Vertical
+				div.SliderScale
+					div Expert
+					div Advanced
+					div Intermediate
+					div Beginner
+					div Off
+
+			div.Container
+				div.SliderValues
+					div Off
+					div No
+					div Yes
+				div.SliderValues
+					div Off
+					div No
+					div Yes
+				div.SliderValues
+					div Off
+					div No
+					div Yes
+
+				div.SliderCaption
+					div#strength.Slider
+					| Strength
+				div.SliderCaption
+					div#flexibility.Slider
+					| Flexibility
+				div.SliderCaption
+					div#invert.Slider
+					| Invert
+				div.SliderCaption
+					div#spin.Slider
+					| Spin
+				div.SliderCaption
+					div#transition.Slider
+					| Transition
+
+			div.ToggleFilters
+
+	div#snapshotAlertTarget.Alert
+
+div#snapshopResultsTarget.Results
+
+div.Video
+	div.ActiveVideo
+		div#snapshotVideoTarget.Content
+	div#snapshotRelatedVideosTarget.RelatedVideos
+	div#vidEmbedSize Video Size
+
+div#snapshotFeedbackTarget.Feedback
+	div.Footer #{settings.siteTitle} was lovingly crafted by 
+		a(href="http://meloncholy.com/") meloncholy
+		| , with 
+		a(href="http://www.theycallusanimals.com/") They Call Us Animals
+		|  providing the fab sample videos. 
+		a(href="#!contact/") Contact
+
+noscript
+	div.NoScript
+		div.NoScriptAlert
+			h2 Sorry
+			p This site uses quite a lot of JavaScript, and you don&rsquo;t appear to have it enabled. Would you mind turning it on and trying again?
