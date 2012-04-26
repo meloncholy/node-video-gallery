@@ -21,4 +21,5 @@ app josie.json
 database.json
 database josie.json
 
-*.sublime-*
+*.sublime-project
+*.sublime-workspace
