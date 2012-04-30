@@ -1,4 +1,4 @@
-/* Pink #dc00a0 rgba(220,0,160,.5) */
+﻿/* Pink #dc00a0 rgba(220,0,160,.5) */
 
 @font-face { font-family: "Segoe UI"; font-weight: normal; src: url("../fonts/segoe-ui/segoeui.ttf"); }
 @font-face { font-family: "Segoe UI Light"; font-weight: lighter; src: url("../fonts/segoe-ui/segoeuil.ttf"); }
@@ -22,9 +22,9 @@ a { color: #dc00a0; text-decoration: none; }
 
 	a:hover { text-decoration: underline; }
 	
-input[type="text"], textarea { border: 1px solid #ccc; font: 1em "Segoe UI", Sans-Serif; padding: 5px; width: 400px; transition: border-color .2s; -moz-transition: border-color .2s; -o-transition: border-color .2s; -webkit-transition: border-color .2s; }
+input[type=text], textarea { border: 1px solid #ccc; font: 1em "Segoe UI", Sans-Serif; padding: 5px; width: 400px; transition: border-color .2s; -moz-transition: border-color .2s; -o-transition: border-color .2s; -webkit-transition: border-color .2s; }
 
-	input[type="text"]:focus, textarea:focus { border-color: #dc00a0; outline: none; /* Chrome */ }
+	input[type=text]:focus, textarea:focus { border-color: #dc00a0; outline: none; /* Chrome */ }
 
 
 .Background { background: no-repeat 50% 0; display: none; height: 100%; position: absolute; width: 100%; }
@@ -92,7 +92,7 @@ input[type="text"], textarea { border: 1px solid #ccc; font: 1em "Segoe UI", San
 	#contact { display: none; position: absolute; right: 30px; top: 11px; }
 
 
-.Filters { color: #fff; font-size: 8pt; height: 12px; overflow: hidden; position: relative; text-transform: uppercase; width: 575px; }
+.Filters { color: #fff; font-size: 8pt; height: 12px; overflow: hidden; position: relative; text-transform: uppercase; width: 566px; }
 
 	.Filters .Container { display: inline-block; padding: 10px 0; vertical-align: top; width: 400px; }
 	
@@ -224,11 +224,11 @@ input[type="text"], textarea { border: 1px solid #ccc; font: 1em "Segoe UI", San
 
 			.Content .VideoActions .TextButton { position: absolute; left: 0; }
 			
-			.Video.Large .VideoActions .Button[data-video-size="large"] { background-color: #dc00a0; border-color: #dc00a0; }
+			.Video.Large .VideoActions .Button[data-video-size=large] { background-color: #dc00a0; border-color: #dc00a0; }
 			
-			.Video.Medium .VideoActions .Button[data-video-size="medium"] { background-color: #dc00a0; border-color: #dc00a0; }
+			.Video.Medium .VideoActions .Button[data-video-size=medium] { background-color: #dc00a0; border-color: #dc00a0; }
 			
-			.Video.Small .VideoActions .Button[data-video-size="small"] { background-color: #dc00a0; border-color: #dc00a0; }
+			.Video.Small .VideoActions .Button[data-video-size=small] { background-color: #dc00a0; border-color: #dc00a0; }
 			
 
 			.SimilarVideos ul { height: 180px; overflow: hidden; }
