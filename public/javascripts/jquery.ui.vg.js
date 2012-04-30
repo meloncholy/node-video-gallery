@@ -603,7 +603,9 @@ $.ui.widget.subclass("ui.vgStart",
 		// Analytics async tracking (remove #! so it shows up)
 		if (_gaq !== undefined)
 		{
-			_gaq.push(['_link', location.href.replace(/#!/, "")]);
+			// This breaks Ghostery and doesn't seem to work anyway...
+			//_gaq.push(['_link', location.href.replace(/#!/, "")]);
+			_gaq.push(['_link', location.href]);
 		}
 	}
 });
