@@ -5,7 +5,7 @@ A Metro-style video gallery with Ajax, infinite scroll and other fun stuff. Now 
 
 There's a load of bumf about the [original PHP version here](http://meloncholy.com/portfolio/video-gallery/) (mostly relevant) and some supplementary info about [this version here](http://meloncholy.com/portfolio/node-video-gallery/). 
 
-[http://bits.meloncholy.com/node-video-gallery/](Demo site)
+[Demo site](http://bits.meloncholy.com/node-video-gallery/)
 
 The front end code is (almost) identical to that in the PHP version. It could do with updating a bit, e.g. to use the HTML5 history API rather than `#!` and moving the jQuery events over to `on`. But other than that it works fine. 
 
